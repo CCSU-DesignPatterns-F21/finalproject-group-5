@@ -6,6 +6,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.event.*;
 
+/**
+ * Main class that creates game and instance.
+ */
 public class Game extends JPanel {
 
     private static int x =200;
@@ -40,6 +43,11 @@ public class Game extends JPanel {
 
     }
 
+    /**
+     * Main runner method that creates instance of game and calls keylistener.
+     * @param args Arguments
+     * @throws InterruptedException If interrupted ends program
+     */
     public static void main(String[] args) throws InterruptedException {
         JFrame frame = new JFrame("CTF");
         Game game = new Game();
