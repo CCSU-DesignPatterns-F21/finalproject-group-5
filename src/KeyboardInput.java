@@ -6,11 +6,11 @@ class KeyboardInput extends KeyAdapter {
             {
                     if (e.getKeyCode()== KeyEvent.VK_W)
                             Game.changeY(-10);
-                    else if (e.getKeyCode()== KeyEvent.VK_A)
+                    if (e.getKeyCode()== KeyEvent.VK_A)
                             Game.changeX(-10);
-                    else if (e.getKeyCode()== KeyEvent.VK_S)
+                    if (e.getKeyCode()== KeyEvent.VK_S)
                             Game.changeY(10);
-                    else if (e.getKeyCode()== KeyEvent.VK_D)
+                    if (e.getKeyCode()== KeyEvent.VK_D)
                             Game.changeX(10);
                     }
 }
