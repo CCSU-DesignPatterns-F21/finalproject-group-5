@@ -4,13 +4,17 @@ import java.awt.event.KeyEvent;
 class KeyboardInput extends KeyAdapter {
     public void keyPressed(KeyEvent e)
             {
-                    if (e.getKeyCode()== KeyEvent.VK_W)
+                    if (e.getKeyCode()== KeyEvent.VK_W) {
                             Game.changeY(-10);
-                    else if (e.getKeyCode()== KeyEvent.VK_A)
+                    }
+                    else if (e.getKeyCode()== KeyEvent.VK_A) {
                             Game.changeX(-10);
-                    else if (e.getKeyCode()== KeyEvent.VK_S)
+                    }
+                    else if (e.getKeyCode()== KeyEvent.VK_S) {
                             Game.changeY(10);
-                    else if (e.getKeyCode()== KeyEvent.VK_D)
+                    }
+                    else if (e.getKeyCode()== KeyEvent.VK_D) {
                             Game.changeX(10);
                     }
+            }
 }
