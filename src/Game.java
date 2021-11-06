@@ -42,7 +42,9 @@ public class Game extends JPanel {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.fillOval(x, y, 30, 30);
-
+        flag.getevilx(evilflagx);
+        flag.getevily(evilflagy);
+        flag.getg2d(g2d);
         if(evilflagtaken==0)
             //g2d.drawRect(evilflagx, evilflagy, 30, 30);
         	flag.drawFlag();
