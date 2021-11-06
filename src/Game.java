@@ -18,6 +18,7 @@ public class Game extends JPanel {
     private static int enemyy = 100;
     public static int evilflagx = 500;
     public static int evilflagy = 100;
+
     private static int evilflagtaken = 0;
 
     static void changeX(int offset) {
