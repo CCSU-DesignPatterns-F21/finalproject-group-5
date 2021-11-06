@@ -8,7 +8,6 @@ import java.awt.event.*;
 
 
 public class SingletonFlag{
-	
 	public static SingletonFlag getInstance(){
 		if (theInstance == null) {
 			theInstance = new SingletonFlag();
@@ -16,8 +15,10 @@ public class SingletonFlag{
 		return theInstance;
 	}
 	private SingletonFlag() {
-		g2d.drawRect(evilflagx, evilflagy, 30, 30);
 	}
 	private static SingletonFlag theInstance = null;
-	private Graphics2D g2d; 
+	private Graphics2D g2d;
+	public void drawFlag() {
+		g2d.drawRect(500, 100, 30, 30);
+	}
 }
