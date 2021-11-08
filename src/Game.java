@@ -1,9 +1,12 @@
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.util.Timer;
 import java.awt.event.*;
+import java.util.TimerTask;
+import java.lang.Math;
+
 
 public class Game extends JPanel {
     //character values
@@ -34,6 +37,9 @@ public class Game extends JPanel {
 
     static void damage(){health=health-1;}
 
+    public static double startTime;
+    public static double elapsed;
+
     @Override
     public void paint(Graphics g) {
         if(x==evilflagx&&y==evilflagy)
@@ -50,8 +56,7 @@ public class Game extends JPanel {
         flag.getevily(evilflagy);
         flag.getg2d(g2d);
         if(evilflagtaken==0)
-            //g2d.drawRect(evilflagx, evilflagy, 30, 30);
-        	flag.drawFlag();
+            //g2d.drawRect(evilflagx, evd
         g2d.drawOval(enemyx, enemyy, 30, 30);
         
         //factory
@@ -63,11 +68,18 @@ public class Game extends JPanel {
 
         g2d.drawRect(0,0,30,200);
         g2d.fillRect(0,0,30,health*2);
+        elapsed = (System.currentTimeMillis() - startTime) / 60000;
+        g2d.drawString("Time remaining: "+ String.valueOf(2-elapsed), 200, 200);
+
+    }
+
+    public void gameStart(ActionEvent e){
 
     }
 
     public static void main(String[] args) throws InterruptedException {
         JFrame frame = new JFrame("CTF");
+        startTime= System.currentTimeMillis();
         Game game = new Game();
         frame.add(game);
         frame.setSize(400, 400);
@@ -76,10 +88,20 @@ public class Game extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-        while (true) {
-            //game.moveBall();
+
+        while (elapsed<=3) {
+            if(health==0){
+                System.out.println("Character dead");
+                break;
+            }
+            if(elapsed>2){
+                System.out.print("Out of time.");
+                break;
+            }
+
             game.repaint();
             Thread.sleep(10);
         }
+
     }
 }
