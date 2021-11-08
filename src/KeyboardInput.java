@@ -1,3 +1,5 @@
+package designProject;
+
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -16,5 +18,6 @@ class KeyboardInput extends KeyAdapter {
                     else if (e.getKeyCode()== KeyEvent.VK_D) {
                             Game.changeX(10);
                     }
+
             }
 }
