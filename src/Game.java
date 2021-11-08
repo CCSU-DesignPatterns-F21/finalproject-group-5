@@ -8,6 +8,9 @@ import java.awt.event.*;
 public class Game extends JPanel {
     //character values
 	SingletonFlag flag = SingletonFlag.getInstance();
+	MapFactory mapfactory = new MapFactory();
+	MapObject tree = mapfactory.getObject("TREE");
+	MapObject rock = mapfactory.getObject("ROCK");
     private static int sizex = 30;
     private static int sizey = 30;
     private static int x =200;
@@ -50,6 +53,13 @@ public class Game extends JPanel {
             //g2d.drawRect(evilflagx, evilflagy, 30, 30);
         	flag.drawFlag();
         g2d.drawOval(enemyx, enemyy, 30, 30);
+        
+        //factory
+        tree.getg2d(g2d);
+        rock.getg2d(g2d);
+        tree.draw();
+        rock.draw();
+
 
         g2d.drawRect(0,0,30,200);
         g2d.fillRect(0,0,30,health*2);
