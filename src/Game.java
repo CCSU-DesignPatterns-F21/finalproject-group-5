@@ -1,6 +1,3 @@
-package designProject;
-
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -54,16 +51,13 @@ public class Game extends JPanel {
         
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
-        //g2d.fillOval(x, y, 30, 30);
-        //g2d.fillRect(100,100,30,30);
-        if(evilflagtaken==0)
-            g2d.drawRect(evilflagx, evilflagy, 30, 30);
-        g2d.drawOval(400, 100, 30, 30);
-            
-        Defender def = new Defender(); 
+        g2d.fillOval(x, y, 30, 30);
         flag.getevilx(evilflagx);
         flag.getevily(evilflagy);
         flag.getg2d(g2d);
+        if(evilflagtaken==0)
+            //g2d.drawRect(evilflagx, evd
+        g2d.drawOval(enemyx, enemyy, 30, 30);
         
         //factory
         tree.getg2d(g2d);
@@ -81,35 +75,17 @@ public class Game extends JPanel {
 
     public void gameStart(ActionEvent e){
 
-        def.draw_character(g);
-        
-        
-        Knight knight = new Knight();
-        
-        knight.draw_character(g);
-        
-        Runner runner = new Runner();
-        runner.draw_character(g);
-        
     }
-    
-    
-    
 
     public static void main(String[] args) throws InterruptedException {
         JFrame frame = new JFrame("CTF");
         startTime= System.currentTimeMillis();
         Game game = new Game();
-        
-      
-        //frame.add(def);
-        
         frame.add(game);
         frame.setSize(400, 400);
         frame.addKeyListener((KeyListener) new KeyboardInput());
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
 
 
 
