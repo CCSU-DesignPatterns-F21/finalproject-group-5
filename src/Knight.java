@@ -1,6 +1,9 @@
 package designProject;
 import java.awt.Graphics;
 
+/**
+ * Knight() creates Knight character in game.
+ */
 public class Knight implements Character{
 	
 	private int tri_X_coordinates [] = {150, 160, 150, 140};

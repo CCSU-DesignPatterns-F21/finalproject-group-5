@@ -3,7 +3,10 @@ import java.awt.Graphics2D;
 	import java.awt.Color;
 	import java.util.Random;
 
-	public class rock implements MapObject {
+/**
+ * Creates rock.
+ */
+public class rock implements MapObject {
 		private Graphics2D g2d;
 		int min = 1;
 		int max = 100;

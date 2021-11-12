@@ -2,6 +2,9 @@ package designProject;
 
 import java.awt.Graphics;
 
+/**
+ * Creates runner.
+ */
 public class Runner implements Character{
 	
 	private int X_coordinate= 250;

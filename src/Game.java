@@ -8,22 +8,29 @@ import java.awt.event.*;
 import java.util.TimerTask;
 import java.lang.Math;
 
-
+/**
+ * Main class used to create game.
+ */
 public class Game extends JPanel {
-    //character values
+    /** Creates instance of flag */
 	SingletonFlag flag = SingletonFlag.getInstance();
-	MapFactory mapfactory = new MapFactory();
-	MapObject tree = mapfactory.getObject("TREE");
-	MapObject rock = mapfactory.getObject("ROCK");
-    private static int sizex = 30;
-    private static int sizey = 30;
-    private static int x =200;
-    private static int y = 100;
+    /** Creates mapfactory instance for map */
+    MapFactory mapfactory = new MapFactory(); //Creates mapfactory instance for map
+	/** Creates tree */
+    MapObject tree = mapfactory.getObject("TREE");
+    /** Creates rock */
+	MapObject rock = mapfactory.getObject("ROCK"); //Creates rock
+    private static int sizex = 30; //Base x size of objects (Not fully implemented)
+    private static int sizey = 30; //Base y size of objects (Not fully implemented)
+    private static int x =200; //Start x position of character
+    private static int y = 100; //Start y position of character
     private static int health=100;
 
     private static int enemyx = 400;
     private static int enemyy = 100;
+    /** Start x position of enemy flag */
     public static int evilflagx = 500;
+    /** Start y position of enemy flag */
     public static int evilflagy = 100;
 
     private static int evilflagtaken = 0;
@@ -37,8 +44,9 @@ public class Game extends JPanel {
     }
 
     static void damage(){health=health-1;}
-
+    /** Start time of game. */
     public static double startTime;
+    /** Time elapsed by game, changed by paint(Graphics g) */
     public static double elapsed;
 
     @Override
@@ -77,6 +85,12 @@ public class Game extends JPanel {
         g2d.drawString("Time remaining: "+ String.valueOf(2-elapsed), 200, 200);
     }
 
+    /**
+     * Creates defender, knight, and runner.
+     * @param e ActionEvent that is given to gameStart
+     * @param def Defender instance
+     * @param g G2D that this method draws characters on
+     */
     public void gameStart(ActionEvent e,Defender def,Graphics g){
 
         def.draw_character(g);
@@ -90,6 +104,11 @@ public class Game extends JPanel {
         runner.draw_character(g);
     }
 
+    /**
+     * Main runner method that runs whole game
+     * @param args Arguments given to program
+     * @throws InterruptedException If closed stop program
+     */
     public static void main(String[] args) throws InterruptedException {
         JFrame frame = new JFrame("CTF");
         startTime= System.currentTimeMillis();

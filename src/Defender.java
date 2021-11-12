@@ -8,6 +8,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.event.*;
 
+/**
+ * Creates defender using interface character.
+ */
 public class Defender implements Character{
 	
 	private int tri_X_coordinates1 [] = {175,180,185};
