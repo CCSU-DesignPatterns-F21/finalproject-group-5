@@ -1,4 +1,6 @@
+
 package designProject;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -102,6 +104,7 @@ public class Game extends JPanel {
         
         Runner runner = new Runner();
         runner.draw_character(g);
+
     }
 
     /**
@@ -115,6 +118,7 @@ public class Game extends JPanel {
         Game game = new Game();
 
         //frame.add(def);
+
 
         frame.add(game);
         frame.setSize(400, 400);
