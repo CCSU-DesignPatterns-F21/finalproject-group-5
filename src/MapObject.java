@@ -1,3 +1,4 @@
+package designProject;
 import java.awt.Graphics2D;
 
 public interface MapObject {

@@ -1,3 +1,4 @@
+package designProject;
 
 public class MapFactory {
 	   public MapObject getObject(String objectType){

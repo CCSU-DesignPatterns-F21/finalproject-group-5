@@ -1,5 +1,5 @@
-
-	import java.awt.Graphics2D;
+package designProject;
+import java.awt.Graphics2D;
 	import java.awt.Color;
 	import java.util.Random;
 
