@@ -1,5 +1,3 @@
-package designProject;
-
 /**
  * Creates trees and rock in game.
  */
