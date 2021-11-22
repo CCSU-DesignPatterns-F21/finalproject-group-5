@@ -3,8 +3,6 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 class KeyboardInput extends KeyAdapter {
-    ArrayList<Integer> previous = new ArrayList<Integer>();
-    Double time;
     public void keyPressed(KeyEvent e) {
                     if (e.getKeyCode()== KeyEvent.VK_W) {
                             Game.changeY(-10);
