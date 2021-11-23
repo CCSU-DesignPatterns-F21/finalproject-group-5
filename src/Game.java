@@ -1,12 +1,9 @@
-package designProject;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import javax.swing.*;
-import java.util.Timer;
+import java.util.ArrayList;
 import java.awt.event.*;
-import java.util.TimerTask;
-import java.lang.Math;
 
 /**
  * Main class used to create game.
@@ -20,10 +17,9 @@ public class Game extends JPanel {
     MapObject tree = mapfactory.getObject("TREE");
     /** Creates rock */
 	MapObject rock = mapfactory.getObject("ROCK"); //Creates rock
-    private static int sizex = 30; //Base x size of objects (Not fully implemented)
-    private static int sizey = 30; //Base y size of objects (Not fully implemented)
     private static int x =200; //Start x position of character
     private static int y = 100; //Start y position of character
+    /** Health of player */
     private static int health=100;
 
     private static int enemyx = 400;
@@ -48,11 +44,49 @@ public class Game extends JPanel {
     public static double startTime;
     /** Time elapsed by game, changed by paint(Graphics g) */
     public static double elapsed;
+    /** Time snapshot by momento, subtracted from elapsed to go back in time*/
+    public static double timeParadox;
+    /** Flags collected by player */
+    public static int flagsCollected=0;
+
+    /**
+     * Gets all data for momento to use
+     * @return An arraylist of the data for momento
+     */
+    static ArrayList<Integer> getData(){
+        ArrayList<Integer> data = new ArrayList<Integer>();
+        data.add(x);
+        data.add(y);
+        data.add(health);
+        data.add(enemyx);
+        data.add(enemyy);
+        data.add(evilflagtaken);
+        data.add(flagsCollected);
+        return data;
+    }
+
+    /**
+     * Sets data using arraylist of int data.
+     * @param data Previous state of game to be loaded
+     * @param timeelapsed Time at time of previous state
+     */
+    public static void setData(ArrayList<Integer> data, Double timeelapsed){
+        x=data.get(0);
+        y=data.get(1);
+        health=data.get(2);
+        enemyx=data.get(3);
+        enemyy=data.get(4);
+        evilflagtaken=data.get(5);
+        flagsCollected=data.get(6);
+        timeParadox=timeelapsed;
+    }
 
     @Override
     public void paint(Graphics g) {
-        if(x==evilflagx&&y==evilflagy)
-            evilflagtaken=1;
+        if(x==evilflagx&&y==evilflagy) {
+            evilflagtaken = 1;
+            flagsCollected++;
+        }
         if(x==enemyx&&y==enemyy)
             damage();
         super.paint(g);
@@ -81,8 +115,9 @@ public class Game extends JPanel {
 
         g2d.drawRect(0,0,30,200);
         g2d.fillRect(0,0,30,health*2);
-        elapsed = (System.currentTimeMillis() - startTime) / 60000;
+        elapsed = (System.currentTimeMillis() - startTime) / 60000 -timeParadox;
         g2d.drawString("Time remaining: "+ String.valueOf(2-elapsed), 200, 200);
+        //System.out.println("Elapsed:"+elapsed+"startTime:"+startTime+"currenttime:"+System.currentTimeMillis());
     }
 
     /**
@@ -102,6 +137,7 @@ public class Game extends JPanel {
         
         Runner runner = new Runner();
         runner.draw_character(g);
+
     }
 
     /**
@@ -110,11 +146,14 @@ public class Game extends JPanel {
      * @throws InterruptedException If closed stop program
      */
     public static void main(String[] args) throws InterruptedException {
+
+
         JFrame frame = new JFrame("CTF");
         startTime= System.currentTimeMillis();
         Game game = new Game();
 
         //frame.add(def);
+
 
         frame.add(game);
         frame.setSize(400, 400);
