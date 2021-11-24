@@ -5,10 +5,8 @@ import java.awt.Graphics2D;
 
 public interface Speed {
 	int get_velocity();
-	int set_velocity(int velocity);
-	void changeX(int offset);
-	void changeY(int offset);
+	void changeX(int offset, int velocity);
+	void changeY(int offset, int velocity);
 	void draw_character(Graphics g);
-	
 
 }
