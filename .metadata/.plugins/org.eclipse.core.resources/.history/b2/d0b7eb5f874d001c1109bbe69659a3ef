@@ -1,5 +1,0 @@
-import java.awt.Graphics2D;
-
-public interface IMapFactory extends MapObject{
-	public MapObject getObject(String objectType);
-}
