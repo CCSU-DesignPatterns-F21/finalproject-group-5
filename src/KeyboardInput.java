@@ -1,10 +1,8 @@
-package designProject;
-
 import java.awt.Graphics;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 class KeyboardInput extends KeyAdapter  {
 	
@@ -68,5 +66,3 @@ class KeyboardInput extends KeyAdapter  {
 	
    
 }
-
-

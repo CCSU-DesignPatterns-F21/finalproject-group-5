@@ -1,9 +1,10 @@
-package designProject;
-
 import java.awt.Graphics2D;
 import java.awt.Color;
 import java.util.Random;
 
+/**
+ * Creates rock.
+ */
 public class rock implements MapObject {
 	private Graphics2D g2d;
 	int min = 1;
@@ -14,6 +15,7 @@ public class rock implements MapObject {
 	int y = (int)yvalue + 50;
 	public void getg2d(Graphics2D g2d) {
 		this.g2d = g2d;
+
 	}
 	
 	@Override
