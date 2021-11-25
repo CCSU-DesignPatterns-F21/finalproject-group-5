@@ -1,4 +1,3 @@
-package designProject;
 import java.awt.Graphics;
 
 	public class ExtraFastSpeedDecorator extends SpeedDecorator {
