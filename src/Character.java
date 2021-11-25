@@ -9,4 +9,5 @@ public interface Character {
 	 * @param g G2d graphics used to create character in
 	 */
 	public void draw_character(Graphics g);
+
 }

@@ -1,19 +1,27 @@
+import java.awt.event.KeyEvent;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.event.KeyEvent;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.event.*;
 
 /**
  * Creates defender using interface character.
  */
-public class Defender implements Character{
+public class Defender implements Speed, Character{
 	
-	private int tri_X_coordinates1 [] = {175,180,185};
-	private int tri_X_coordinates2 [] = {185,190,195};
-	private int tri_X_coordinates3 [] = {195,200,205};
-	private int tri_y_coordinates_enemy [] = {60,70, 60};
-	private int tri_y_coordinates_player [] = {300,290, 300};
-	private int rect_X_coordinate_enemy = 175;
-	private int rect_y_coordinate_enemy= 30;
-	private int rect_X_coordinate_player = 175;
-	private int rect_y_coordinate_player= 300;
+	private static int tri_X_coordinates1 [] = {175,180,185};
+	private static int tri_X_coordinates2 [] = {185,190,195};
+	private static int tri_X_coordinates3 [] = {195,200,205};
+	private static int tri_y_coordinates_enemy [] = {60,70, 60};
+	private static int tri_y_coordinates_player [] = {300,290, 300};
+	private static int rect_X_coordinate_enemy = 175;
+	private static int rect_y_coordinate_enemy= 30;
+	private static int rect_X_coordinate_player = 175;
+	private static int rect_y_coordinate_player= 300;
+
 	private int character_width =30;
 	private int character_length= 30;
 	private int crown_points =3;
@@ -35,21 +43,40 @@ public class Defender implements Character{
 		player_defender.fillPolygon(tri_X_coordinates2, tri_y_coordinates_player,crown_points);
 		player_defender.fillPolygon(tri_X_coordinates3, tri_y_coordinates_player,crown_points);
 		
-		
 	}
 	
+	@Override
+	public int get_velocity() {
+		return 1;
+	}
 	
+	int velocity= get_velocity();
 	
+	public void changeX(int offset, int velocity) {
+		rect_X_coordinate_player +=(offset*velocity);
+		rect_X_coordinate_enemy +=(offset*velocity);
+		
+		for(int i=0; i<tri_X_coordinates1.length; i++)
+			tri_X_coordinates1[i] += (offset*velocity);
+		for(int i=0; i<tri_X_coordinates2.length; i++)
+			tri_X_coordinates2[i] += (offset*velocity);
+		for(int i=0; i<tri_X_coordinates3.length; i++)
+			tri_X_coordinates3[i] += (offset*velocity);
+	}
 	
+	 public void changeY(int offset, int velocity) {
+		 rect_y_coordinate_player +=(offset*velocity);
+		 rect_y_coordinate_enemy +=(offset*velocity);
+		 
+		 for(int i=0; i<tri_y_coordinates_player.length; i++)
+			 tri_y_coordinates_player[i] +=(offset*velocity);
+		 
+		 for(int i=0; i<tri_y_coordinates_enemy.length; i++)
+			 tri_y_coordinates_enemy[i] +=(offset*velocity);
+	    }
+
 	
-	//super.paint(g);
-    //Graphics2D g2d = (Graphics2D) g;
-    //g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-    //        RenderingHints.VALUE_ANTIALIAS_ON);
-    //g2d.fillOval(x, y, 30, 30);
-    //g2d.fillRect(100,100,30,30);
-    //if(evilflagtaken==0)
-    //    g2d.drawRect(evilflagx, evilflagy, 30, 30);
-   // g2d.drawOval(400, 100, 30, 30);
+
+	
 
 }

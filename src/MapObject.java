@@ -1,5 +1,4 @@
 import java.awt.Graphics2D;
-
 /**
  * Interface used by other classes to create a map.
  */

@@ -9,7 +9,8 @@ import java.awt.event.*;
  * Main class used to create game.
  */
 public class Game extends JPanel {
-    /** Creates instance of flag */
+    private static final Graphics2D Graphics = null;
+	/** Creates instance of flag */
 	SingletonFlag flag = SingletonFlag.getInstance();
     /** Creates mapfactory instance for map */
     MapFactory mapfactory = new MapFactory(); //Creates mapfactory instance for map
@@ -98,9 +99,18 @@ public class Game extends JPanel {
         //g2d.fillRect(100,100,30,30);
         if(evilflagtaken==0)
             g2d.drawRect(evilflagx, evilflagy, 30, 30);
-        g2d.drawOval(400, 100, 30, 30);
+        //g2d.drawOval(400, 100, 30, 30);
 
-        Defender def = new Defender(); 
+        Runner runner = new Runner(); 
+        runner.draw_character(g);
+        
+        Knight knight = new Knight();
+        knight.draw_character(g);
+        
+        Defender defender = new Defender();
+        defender.draw_character(g);
+        
+
         flag.getevilx(evilflagx);
         flag.getevily(evilflagy);
         flag.getg2d(g2d);
@@ -128,15 +138,14 @@ public class Game extends JPanel {
      */
     public void gameStart(ActionEvent e,Defender def,Graphics g){
 
-        def.draw_character(g);
+    	
         
         
-        Knight knight = new Knight();
+        //Knight knight = new Knight();
+        //knight.draw_character(g);
         
-        knight.draw_character(g);
-        
-        Runner runner = new Runner();
-        runner.draw_character(g);
+        //Runner runner = new Runner();
+        //runner.draw_character(g);
 
     }
 
@@ -146,23 +155,14 @@ public class Game extends JPanel {
      * @throws InterruptedException If closed stop program
      */
     public static void main(String[] args) throws InterruptedException {
-
-
         JFrame frame = new JFrame("CTF");
         startTime= System.currentTimeMillis();
         Game game = new Game();
-
-        //frame.add(def);
-
-
         frame.add(game);
         frame.setSize(400, 400);
         frame.addKeyListener((KeyListener) new KeyboardInput());
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-
-
         while (elapsed<=3) {
             if(health==0){
                 System.out.println("Character dead");
