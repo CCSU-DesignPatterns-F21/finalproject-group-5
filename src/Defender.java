@@ -1,7 +1,3 @@
-package designProject;
-
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -11,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.event.*;
 
+/**
+ * Creates defender using interface character.
+ */
 public class Defender implements Speed, Character{
 	
 	private static int tri_X_coordinates1 [] = {175,180,185};
@@ -22,6 +21,7 @@ public class Defender implements Speed, Character{
 	private static int rect_y_coordinate_enemy= 30;
 	private static int rect_X_coordinate_player = 175;
 	private static int rect_y_coordinate_player= 300;
+
 	private int character_width =30;
 	private int character_length= 30;
 	private int crown_points =3;
