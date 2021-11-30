@@ -1,5 +1,3 @@
-
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -33,6 +31,8 @@ public class Game extends JPanel {
     public static int evilflagy = 100;
 
     private static int evilflagtaken = 0;
+    
+    
 
     static void changeX(int offset) {
         x += offset;
@@ -51,6 +51,10 @@ public class Game extends JPanel {
     public static double timeParadox;
     /** Flags collected by player */
     public static int flagsCollected=0;
+    
+    //strategy
+    private static boolean flagtaken = false;
+    StrategyContext context = new StrategyContext(new StrategyEasy());
 
     /**
      * Gets all data for momento to use
@@ -67,6 +71,7 @@ public class Game extends JPanel {
         data.add(flagsCollected);
         return data;
     }
+   
 
     /**
      * Sets data using arraylist of int data.
@@ -89,11 +94,13 @@ public class Game extends JPanel {
         if(x==evilflagx&&y==evilflagy) {
             evilflagtaken = 1;
             flagsCollected++;
+            flagtaken = true;
         }
         if(x==enemyx&&y==enemyy)
             damage();
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
+       
         
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
@@ -112,6 +119,13 @@ public class Game extends JPanel {
         Defender defender = new Defender();
         defender.draw_character(g);
         
+        Enemy enemy = new Enemy();
+        enemy.draw_character(g);
+        
+        if (flagtaken)
+        {
+        	context.doStrategy();
+        }
 
         flag.getevilx(evilflagx);
         flag.getevily(evilflagy);
@@ -123,6 +137,8 @@ public class Game extends JPanel {
         rock.getg2d(g2d);
         tree.draw();
         rock.draw();
+        
+
 
 
         g2d.drawRect(0,0,30,200);

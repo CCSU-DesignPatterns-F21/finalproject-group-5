@@ -3,8 +3,9 @@ public class StrategyEasy implements Strategy {
 
 	@Override
 	public void Attack() {
-		// TODO Auto-generated method stub
+    Enemy.enemyx += 5; 
+
+    Enemy.enemyy += 5; 
 
 	}
-
 }
