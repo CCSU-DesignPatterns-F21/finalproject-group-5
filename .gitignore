@@ -1,4 +1,10 @@
 .idea
+.metadata
 src/.metadata
 out
 finalproject-group-5.iml.iml
+CTFgame/src/.metadata
+CTFgame/out
+CTFgame/.classpath
+CTFgame/.project
+CTFgame/CTFgame.iml
