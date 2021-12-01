@@ -1,12 +1,6 @@
-/**
- * Creates trees and rock in game.
- */
+package designProject;
+
 public class MapFactory {
-	/**
-	 * Gets object
-	 * @param objectType Type of object
-	 * @return Return MapObject
-	 */
 	   public MapObject getObject(String objectType){
 		      if(objectType == null){
 		         return null;
@@ -20,4 +14,3 @@ public class MapFactory {
 		      return null;
 		   }
 }
-
