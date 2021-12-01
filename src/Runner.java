@@ -1,5 +1,3 @@
-package designProject;
-
 import java.awt.Graphics;
 
 public class Runner implements Speed, Character{
