@@ -17,11 +17,11 @@ public class Game extends JPanel {
 	/** Creates instance of flag */
 	SingletonFlag flag = SingletonFlag.getInstance();
     /** Creates mapfactory instance for map */
-    MapFactory mapfactory = new MapFactory(); //Creates mapfactory instance for map
+   // MapFactory mapfactory = new MapFactory(); //Creates mapfactory instance for map
 	/** Creates tree */
-    MapObject tree = mapfactory.getObject("TREE");
+   // MapObject tree = mapfactory.getObject("TREE");
     /** Creates rock */
-	MapObject rock = mapfactory.getObject("ROCK"); //Creates rock
+	//MapObject rock = mapfactory.getObject("ROCK"); //Creates rock
     private static int x =200; //Start x position of character
     private static int y = 100; //Start y position of character
     /** Health of player */
@@ -118,12 +118,11 @@ public class Game extends JPanel {
         flag.getg2d(g2d);
 
 
-        //factory
-        tree.getg2d(g2d);
-        rock.getg2d(g2d);
-        tree.draw();
-        rock.draw();
-
+        //factory and builder together
+        BuildMap buildmap = new BuildMap();
+        MapBuilder mapbuilder = new MapBuilder();
+        buildmap.constructMap(mapbuilder, g);
+     
 
         g2d.drawRect(0,0,30,200);
         g2d.fillRect(0,0,30,health*2);
@@ -162,7 +161,6 @@ public class Game extends JPanel {
         JFrame frame = new JFrame("CTF");
         startTime= System.currentTimeMillis();
         Game game = new Game();
-
 
         frame.add(game);
         frame.setSize(400, 400);
