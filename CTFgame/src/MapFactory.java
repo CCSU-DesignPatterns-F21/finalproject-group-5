@@ -1,7 +1,7 @@
 /**
  * Creates trees and rock in game.
  */
-public class MapFactory {
+public class MapFactory implements IMapFactory{
 	/**
 	 * Gets object
 	 * @param objectType Type of object
@@ -20,3 +20,4 @@ public class MapFactory {
 		      return null;
 		   }
 }
+

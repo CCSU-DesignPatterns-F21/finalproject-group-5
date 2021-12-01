@@ -3,15 +3,13 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.awt.event.*;
 
 /**
  * Main class used to create game.
  */
 public class Game extends JPanel {
-    private static final Graphics2D Graphics = null;
-	/** Creates instance of flag */
+    /** Creates instance of flag */
 	SingletonFlag flag = SingletonFlag.getInstance();
     /** Creates mapfactory instance for map */
     MapFactory mapfactory = new MapFactory(); //Creates mapfactory instance for map
@@ -85,7 +83,6 @@ public class Game extends JPanel {
 
     @Override
     public void paint(Graphics g) {
-    	
         if(x==evilflagx&&y==evilflagy) {
             evilflagtaken = 1;
             flagsCollected++;
@@ -97,19 +94,13 @@ public class Game extends JPanel {
         
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
-        //g2d.fillOval(x, y, 30, 30);
+        g2d.fillOval(x, y, 30, 30);
         //g2d.fillRect(100,100,30,30);
         if(evilflagtaken==0)
             g2d.drawRect(evilflagx, evilflagy, 30, 30);
-        //g2d.drawOval(400, 100, 30, 30);
+        g2d.drawOval(400, 100, 30, 30);
 
-        
-        Knight knight = new Knight();
-        knight.draw_character(g);
-        
-        Defender defender = new Defender();
-        defender.draw_character(g);
-        
+        Defender def = new Defender(); 
         flag.getevilx(evilflagx);
         flag.getevily(evilflagy);
         flag.getg2d(g2d);
@@ -137,15 +128,15 @@ public class Game extends JPanel {
      */
     public void gameStart(ActionEvent e,Defender def,Graphics g){
 
-    	
+        def.draw_character(g);
         
         
-        //Knight knight = new Knight();
+        Knight knight = new Knight();
         
-        //knight.draw_character(g);
+        knight.draw_character(g);
         
-        //Runner runner = new Runner();
-        //runner.draw_character(g);
+        Runner runner = new Runner();
+        runner.draw_character(g);
 
     }
 
@@ -156,9 +147,12 @@ public class Game extends JPanel {
      */
     public static void main(String[] args) throws InterruptedException {
 
+
         JFrame frame = new JFrame("CTF");
         startTime= System.currentTimeMillis();
         Game game = new Game();
+
+        //frame.add(def);
 
 
         frame.add(game);
@@ -166,6 +160,7 @@ public class Game extends JPanel {
         frame.addKeyListener((KeyListener) new KeyboardInput());
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 
 
         while (elapsed<=3) {
