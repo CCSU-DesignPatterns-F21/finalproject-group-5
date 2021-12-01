@@ -1,14 +1,3 @@
-package designProject;
-
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import java.awt.event.*;
-
-
-
 import java.awt.Graphics2D;
 
 
