@@ -3,9 +3,6 @@ package designProject;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
-import designProject.MapBuilder.MapFactory;
 
 public class MapBuilder implements Builder{
 	

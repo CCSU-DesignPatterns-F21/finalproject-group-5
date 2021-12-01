@@ -1,17 +1,8 @@
 package designProject;
 
-import java.awt.Graphics;
-import java.awt.KeyEventDispatcher;
-import java.awt.KeyboardFocusManager;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Map.Entry;
 
 class KeyboardInput extends KeyAdapter implements KeyListener {
 	
