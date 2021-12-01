@@ -1,9 +1,9 @@
+package designProject;
+
 import java.awt.Graphics;
 
-/**
- * Creates runner.
- */
 public class Runner implements Speed, Character{
+	
 	private static int X_coordinate= 250;
 	private static int y_coordinate_enemy= 120;
 	private static int y_coordinate_player= 220;
