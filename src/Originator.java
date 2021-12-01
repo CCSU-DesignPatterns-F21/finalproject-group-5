@@ -1,5 +1,3 @@
-package designProject;
-
 import java.util.ArrayList;
 
 /**
