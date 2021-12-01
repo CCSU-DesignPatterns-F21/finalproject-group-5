@@ -1,8 +1,9 @@
-
 import java.awt.Graphics2D;
 import java.awt.Color;
-import java.util.Random;
 
+/**
+ * Creates tree, used to make map.
+ */
 public class tree implements MapObject {
 	private Graphics2D g2d;
 	int min = 1;
