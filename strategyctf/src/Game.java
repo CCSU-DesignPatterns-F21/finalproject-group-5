@@ -21,7 +21,7 @@ public class Game extends JPanel {
     private static int x =200; //Start x position of character
     private static int y = 100; //Start y position of character
     /** Health of player */
-    private static int health=100;
+    public static int health=1000;
 
     private static int enemyx = 400;
     private static int enemyy = 100;
@@ -41,8 +41,18 @@ public class Game extends JPanel {
     static void changeY(int offset) {
         y += offset;
     }
+    
+    public static int GetX()
+    {
+    	return x;
+    }
+    
+    public static int GetY()
+    {
+    	return y;
+    }
 
-    static void damage(){health=health-1;}
+    //static void damage(){health=health-1;}
     /** Start time of game. */
     public static double startTime;
     /** Time elapsed by game, changed by paint(Graphics g) */
@@ -54,7 +64,7 @@ public class Game extends JPanel {
     
     //strategy
     private static boolean flagtaken = false;
-    StrategyContext context = new StrategyContext(new StrategyEasy());
+    static StrategyContext context = new StrategyContext(new StrategyEasy());
 
     /**
      * Gets all data for momento to use
@@ -96,8 +106,8 @@ public class Game extends JPanel {
             flagsCollected++;
             flagtaken = true;
         }
-        if(x==enemyx&&y==enemyy)
-            damage();
+        //if(x==enemyx&&y==enemyy)
+            //damage();
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
        

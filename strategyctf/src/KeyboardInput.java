@@ -58,6 +58,15 @@ class KeyboardInput extends KeyAdapter  {
 		 else if (e.getKeyCode()== KeyEvent.VK_DELETE) {
              Originator.loadState();
 		 }
+		
+		if (e.getKeyCode() == KeyEvent.VK_O)
+		{
+			Game.context = new StrategyContext(new StrategyEasy());
+		}
+		else if (e.getKeyCode() == KeyEvent.VK_P)
+		{
+			Game.context = new StrategyContext(new StrategyHard());
+		}
 	}
 	
 	public void keyTyped(KeyEvent e) {}
