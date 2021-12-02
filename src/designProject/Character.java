@@ -1,3 +1,5 @@
+package designProject;
+
 import java.awt.Graphics;
 
 /**

@@ -1,26 +1,31 @@
+package designProject;
+
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.awt.event.*;
 
 /**
  * Main class used to create game.
  */
 public class Game extends JPanel {
-    /** Creates instance of flag */
+    private static final Graphics2D Graphics = null;
+	/** Creates instance of flag */
 	SingletonFlag flag = SingletonFlag.getInstance();
     /** Creates mapfactory instance for map */
-    MapFactory mapfactory = new MapFactory(); //Creates mapfactory instance for map
+   // MapFactory mapfactory = new MapFactory(); //Creates mapfactory instance for map
 	/** Creates tree */
-    MapObject tree = mapfactory.getObject("TREE");
+   // MapObject tree = mapfactory.getObject("TREE");
     /** Creates rock */
-	MapObject rock = mapfactory.getObject("ROCK"); //Creates rock
+	//MapObject rock = mapfactory.getObject("ROCK"); //Creates rock
     private static int x =200; //Start x position of character
     private static int y = 100; //Start y position of character
     /** Health of player */
-    private static int health=100;
+    public static int health=300;
 
     private static int enemyx = 400;
     private static int enemyy = 100;
@@ -31,14 +36,43 @@ public class Game extends JPanel {
 
     private static int evilflagtaken = 0;
 
+    /**
+     * Changes X of player character.
+     * @param offset magnitude of movement in a direction.
+     */
     static void changeX(int offset) {
         x += offset;
     }
 
+    /**
+     * Changes Y of player character.
+     * @param offset magnitude of movement in Y direction.
+     */
     static void changeY(int offset) {
         y += offset;
     }
 
+    /**
+     * Getter method to get player X
+     * @return X coordinate of player.
+     */
+    public static int GetX()
+    {
+        return x;
+    }
+
+    /**
+     * Getter method to get player Y.
+     * @return Y coordinate of player.
+     */
+    public static int GetY()
+    {
+        return y;
+    }
+
+    /**
+     * Deals damage to character.
+     */
     static void damage(){health=health-1;}
     /** Start time of game. */
     public static double startTime;
@@ -48,6 +82,13 @@ public class Game extends JPanel {
     public static double timeParadox;
     /** Flags collected by player */
     public static int flagsCollected=0;
+
+    /**
+     * For strategy Pattern, if flag is taken becomes true. Otherwise false.
+     */
+    private static boolean flagtaken = false;
+    static StrategyContext context = new StrategyContext(new StrategyEasy());
+
 
     /**
      * Gets all data for momento to use
@@ -83,12 +124,14 @@ public class Game extends JPanel {
 
     @Override
     public void paint(Graphics g) {
+
         if(x==evilflagx&&y==evilflagy) {
             evilflagtaken = 1;
             flagsCollected++;
+            flagtaken = true;
         }
-        if(x==enemyx&&y==enemyy)
-            damage();
+        /**if(x==enemyx&&y==enemyy)
+            damage(); */
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
         
@@ -98,20 +141,35 @@ public class Game extends JPanel {
         //g2d.fillRect(100,100,30,30);
         if(evilflagtaken==0)
             g2d.drawRect(evilflagx, evilflagy, 30, 30);
-        g2d.drawOval(400, 100, 30, 30);
+        //g2d.drawOval(400, 100, 30, 30);
 
-        Defender def = new Defender(); 
+        Runner runner = new Runner();
+        runner.draw_character(g);
+
+        Knight knight = new Knight();
+        knight.draw_character(g);
+        
+        Defender defender = new Defender();
+        defender.draw_character(g);
+
+        Enemy enemy = new Enemy();
+        enemy.draw_character(g);
+
+        if (flagtaken)
+        {
+            context.doStrategy();
+        }
+
         flag.getevilx(evilflagx);
         flag.getevily(evilflagy);
         flag.getg2d(g2d);
 
 
-        //factory
-        tree.getg2d(g2d);
-        rock.getg2d(g2d);
-        tree.draw();
-        rock.draw();
-
+        //factory and builder together
+        BuildMap buildmap = new BuildMap();
+        MapBuilder mapbuilder = new MapBuilder();
+        buildmap.constructMap(mapbuilder, g);
+     
 
         g2d.drawRect(0,0,30,200);
         g2d.fillRect(0,0,30,health*2);
@@ -128,15 +186,15 @@ public class Game extends JPanel {
      */
     public void gameStart(ActionEvent e,Defender def,Graphics g){
 
-        def.draw_character(g);
+    	
         
         
-        Knight knight = new Knight();
+        //Knight knight = new Knight();
         
-        knight.draw_character(g);
+        //knight.draw_character(g);
         
-        Runner runner = new Runner();
-        runner.draw_character(g);
+        //Runner runner = new Runner();
+        //runner.draw_character(g);
 
     }
 
@@ -147,20 +205,15 @@ public class Game extends JPanel {
      */
     public static void main(String[] args) throws InterruptedException {
 
-
         JFrame frame = new JFrame("CTF");
         startTime= System.currentTimeMillis();
         Game game = new Game();
-
-        //frame.add(def);
-
 
         frame.add(game);
         frame.setSize(400, 400);
         frame.addKeyListener((KeyListener) new KeyboardInput());
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 
 
         while (elapsed<=3) {
