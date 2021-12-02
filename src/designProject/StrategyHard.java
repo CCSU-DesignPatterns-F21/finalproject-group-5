@@ -1,4 +1,8 @@
+package designProject;
 
+/**
+ * Part of strategy pattern, Hard difficulty.
+ */
 public class StrategyHard implements Strategy {
 
 	@Override

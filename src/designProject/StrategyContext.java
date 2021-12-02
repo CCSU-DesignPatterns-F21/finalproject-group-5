@@ -1,3 +1,6 @@
+package designProject;
+
+
 public class StrategyContext {
 	private Strategy strategy;
 	

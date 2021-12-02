@@ -25,7 +25,7 @@ public class Game extends JPanel {
     private static int x =200; //Start x position of character
     private static int y = 100; //Start y position of character
     /** Health of player */
-    private static int health=100;
+    public static int health=100;
 
     private static int enemyx = 400;
     private static int enemyy = 100;
@@ -36,14 +36,43 @@ public class Game extends JPanel {
 
     private static int evilflagtaken = 0;
 
+    /**
+     * Changes X of player character.
+     * @param offset magnitude of movement in a direction.
+     */
     static void changeX(int offset) {
         x += offset;
     }
 
+    /**
+     * Changes Y of player character.
+     * @param offset magnitude of movement in Y direction.
+     */
     static void changeY(int offset) {
         y += offset;
     }
 
+    /**
+     * Getter method to get player X
+     * @return X coordinate of player.
+     */
+    public static int GetX()
+    {
+        return x;
+    }
+
+    /**
+     * Getter method to get player Y.
+     * @return Y coordinate of player.
+     */
+    public static int GetY()
+    {
+        return y;
+    }
+
+    /**
+     * Deals damage to character.
+     */
     static void damage(){health=health-1;}
     /** Start time of game. */
     public static double startTime;
@@ -53,6 +82,13 @@ public class Game extends JPanel {
     public static double timeParadox;
     /** Flags collected by player */
     public static int flagsCollected=0;
+
+    /**
+     * For strategy Pattern, if flag is taken becomes true. Otherwise false.
+     */
+    private static boolean flagtaken = false;
+    static StrategyContext context = new StrategyContext(new StrategyEasy());
+
 
     /**
      * Gets all data for momento to use
@@ -88,31 +124,42 @@ public class Game extends JPanel {
 
     @Override
     public void paint(Graphics g) {
-    	
+
         if(x==evilflagx&&y==evilflagy) {
             evilflagtaken = 1;
             flagsCollected++;
+            flagtaken = true;
         }
-        if(x==enemyx&&y==enemyy)
-            damage();
+        /**if(x==enemyx&&y==enemyy)
+            damage(); */
         super.paint(g);
         Graphics2D g2d = (Graphics2D) g;
         
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
-        //g2d.fillOval(x, y, 30, 30);
+        g2d.fillOval(x, y, 30, 30);
         //g2d.fillRect(100,100,30,30);
         if(evilflagtaken==0)
             g2d.drawRect(evilflagx, evilflagy, 30, 30);
         //g2d.drawOval(400, 100, 30, 30);
 
-        
+        Runner runner = new Runner();
+        runner.draw_character(g);
+
         Knight knight = new Knight();
         knight.draw_character(g);
         
         Defender defender = new Defender();
         defender.draw_character(g);
-        
+
+        Enemy enemy = new Enemy();
+        enemy.draw_character(g);
+
+        if (flagtaken)
+        {
+            context.doStrategy();
+        }
+
         flag.getevilx(evilflagx);
         flag.getevily(evilflagy);
         flag.getg2d(g2d);

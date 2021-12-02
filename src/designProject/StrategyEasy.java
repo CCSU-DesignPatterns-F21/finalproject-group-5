@@ -1,12 +1,22 @@
+package designProject;
 
+/**
+ *
+ */
 public class StrategyEasy implements Strategy
 {
+	/**
+	 * Damages player.
+	 */
 	@Override
 	public void damage()
 	{
 		Game.health=Game.health-1;
 	}
-    
+
+	/**
+	 * Attacks player.
+	 */
 	@Override
 	public void Attack() 
 	{
