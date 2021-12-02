@@ -25,7 +25,7 @@ public class Game extends JPanel {
     private static int x =200; //Start x position of character
     private static int y = 100; //Start y position of character
     /** Health of player */
-    public static int health=100;
+    public static int health=300;
 
     private static int enemyx = 400;
     private static int enemyy = 100;

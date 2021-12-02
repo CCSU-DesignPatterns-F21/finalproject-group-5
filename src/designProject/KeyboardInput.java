@@ -99,5 +99,3 @@ class KeyboardInput extends KeyAdapter implements KeyListener {
 	
    
 }
-
-
